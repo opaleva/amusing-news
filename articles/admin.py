@@ -3,7 +3,7 @@ from .models import Article
 
 
 @admin.register(Article)
-class PostAdmin(admin.ModelAdmin):
+class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'publish', 'status')
     list_filter = ('status', 'created', 'publish', 'author')
     search_fields = ('title', 'body')
