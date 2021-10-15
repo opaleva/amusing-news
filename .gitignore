@@ -1,4 +1,3 @@
-### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -38,6 +37,8 @@ ipython_config.py
 
 # Environments
 env/
+.idea/
+src/.idea/
 
 # Secrets
 /news_portal/secrets.json

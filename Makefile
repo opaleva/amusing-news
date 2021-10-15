@@ -1,22 +1,31 @@
 SHELL := /bin/bash
 
-help:
-	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+deps:
+	. ../env/bin/activate && ../env/bin/pip install -U -r requirements.txt
+
+freeze:
+	. ../env/bin/activate && ../env/bin/pip freeze > requirements.txt
 
 run:
-	python3.9 manage.py runserver
+	python3.9 manage.py runserver ${p}
 
 shell:
 	python3.9 manage.py shell
 
-migration:
-	python3.9 manage.py makemigrations
+migrations:
+	python3.9 manage.py makemigrations ${app}
+
+sql:
+	python3.9 manage.py sqlmigrate ${file}
 
 migrate:
 	python3.9 manage.py migrate
 
 super:
 	python3.9 manage.py createsuperuser
+
+upd-id:
+	sudo -u postgres psql ${db} -c 'ALTER SEQUENCE ${seq} RESTART; UPDATE ${tab} SET id = DEFAULT;'
 
 heroku:
 	git push heroku master
