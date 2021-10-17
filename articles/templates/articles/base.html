@@ -1,10 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>{% block title %}{% endblock %}</title>
+  <link href="{% static "css/articles.css" %}" rel="stylesheet">
 </head>
 <body>
-
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <div id="sidebar">
+    <h2>Несерьёзные новости</h2>
+    <p>о несерьёзном из серьёзных источников</p>
+  </div>
 </body>
 </html>

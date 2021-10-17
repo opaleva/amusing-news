@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "articles/base.html" %}
 
-</body>
-</html>
+{% block title %}Все новости{% endblock %}
+
+{% block content %}
+    <h1>Все новости</h1>
+    {% for article in articles %}
+        <h2>
+            <a href="{{ article.get_absolute_url }}">
+                {{ article.title }}
+            </a>
+        </h2>
+        <p class="date">
+            {{ article.publish }}, {{ article.author }}
+        </p>
+        {{ article.body|truncatewords:30|linebreaks }}
+    {% endfor %}
+    {% include "pagination.html" with page=articles %}
+{% endblock %}

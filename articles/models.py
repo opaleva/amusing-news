@@ -1,4 +1,6 @@
 from django.db import models
+from django.template.defaultfilters import slugify
+from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -32,6 +34,16 @@ class Article(models.Model):
 
     class Meta:
         ordering = ('-publish',)
+        
+    # def save(self, *args, **kwargs):
+    #     self.url = slugify(self.title)
+    #     super(Article, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('articles:article',
+                       args=[self.publish.year,
+                             self.publish.month,
+                             self.publish.day, self.slug])
 
     def __str__(self):
         return self.title
