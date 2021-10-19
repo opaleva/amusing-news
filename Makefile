@@ -21,6 +21,8 @@ sql:
 migrate:
 	python3.9 manage.py migrate
 
+static:
+	python3.9 manage.py collectstatic
 super:
 	python3.9 manage.py createsuperuser
 
