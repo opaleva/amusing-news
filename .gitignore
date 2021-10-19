@@ -40,5 +40,8 @@ env/
 .idea/
 src/.idea/
 
+# Media and Static directories
+/static/
+
 # Secrets
 /news_portal/secrets.json

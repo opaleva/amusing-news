@@ -23,8 +23,12 @@ migrate:
 
 static:
 	python3.9 manage.py collectstatic
+
 super:
 	python3.9 manage.py createsuperuser
+
+test:
+	python3.9 manage.py test
 
 upd-id:
 	sudo -u postgres psql ${db} -c 'ALTER SEQUENCE ${seq} RESTART; UPDATE ${tab} SET id = DEFAULT;'
