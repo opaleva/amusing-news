@@ -7,7 +7,11 @@
         {{ article.publish }}, {{ article.author }}
     </p>
     {{ article.body|linebreaks }}
+    <p class="tags">Tags: {{ article.tags.all|join:", " }}</p>
+    <br>
     {% include "articles/article/share.html" %}
-    <br><br>
+    <br>
     <a href="/">Ко всем новостям</a>
+
+    {% include "articles/article/comments.html" %}
 {% endblock %}

@@ -10,6 +10,7 @@
                 {{ article.title }}
             </a>
         </h2>
+        <p class="tags">Tags: {{ article.tags.all|join:", " }}</p>
         <p class="date">
             {{ article.publish }}, {{ article.author }}
         </p>

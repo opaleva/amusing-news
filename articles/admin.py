@@ -18,4 +18,4 @@ class ArticleAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'mail', 'article', 'created', 'active')
     list_filter = ('active', 'created', 'updated')
-    search_fields = ('name', 'mail', 'body')
+    search_fields = ('name', 'mail', 'text')

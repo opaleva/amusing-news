@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 
 class PublishedManager(models.Manager):
@@ -29,15 +30,14 @@ class Article(models.Model):
 
     objects = models.Manager()
     published = PublishedManager()
+    tags = TaggableManager()
 
     class Meta:
         ordering = ('-publish',)
 
     def get_absolute_url(self):
         return reverse('articles:article',
-                       args=[self.publish.year,
-                             self.publish.month,
-                             self.publish.day, self.slug])
+                       args=[self.pk, self.slug])
 
     def __str__(self):
         return self.title
@@ -48,8 +48,8 @@ class Comment(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name='comments')
     name = models.CharField(max_length=30)
-    mail = models.EmailField()
-    body = models.TextField()
+    mail = models.EmailField(blank=True)
+    text = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)

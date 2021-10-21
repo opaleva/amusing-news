@@ -6,5 +6,6 @@ app_name = 'articles'
 
 urlpatterns = [
     path('', views.ArticleListView.as_view(), name='articles'),
-    path('<int:year>/<int:month>/<int:day>/<slug:article>', views.ArticleView.as_view(), name='article'),
+    path('<pk>/<slug:article>', views.ArticleView.as_view(), name='article'),
+    path('tag/<slug:tag_slug>/', views.ArticleListView.as_view(), name='articles_by_tag'),
 ]
