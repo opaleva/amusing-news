@@ -35,7 +35,6 @@ class ArticleView(DetailView):
         form = CommentForm(request.POST)
         self.object = self.get_object()
         context = super(ArticleView, self).get_context_data(**kwargs)
-
         article = Article.objects.filter(id=self.kwargs['pk'])[0]
         comments = article.comments.all()
 

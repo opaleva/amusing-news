@@ -15,6 +15,13 @@
             {{ article.publish }}, {{ article.author }}
         </p>
         {{ article.body|truncatewords:30|linebreaks }}
+
+        {% with article.comments.count as total_comments %}
+            <a href="{{ article.get_absolute_url }}"><h4>
+                {{ total_comments }} comment{{ total_comments|pluralize }}
+            </h4></a>
+        {% endwith %}
+        <hr>
     {% endfor %}
     {% include "pagination.html" with page=page_obj %}
 {% endblock %}
