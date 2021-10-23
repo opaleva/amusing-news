@@ -1,16 +1,20 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
+from .mixins import TagMixin
 from .models import Article
 from .forms import CommentForm
-from taggit.models import Tag
 
 
-class ArticleListView(ListView, Tag):
+class ArticleListView(ListView):
     model = Article
-    context_object_name = 'articles'
     paginate_by = 10
     template_name = 'articles/article/list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['articles'] = Article.published.all()
+        return context
 
 
 class ArticleView(DetailView):
@@ -49,3 +53,12 @@ class ArticleView(DetailView):
             context['new_comment'] = new_comment
             return self.render_to_response(context=context)
         return self.render_to_response(context=context)
+
+
+class ArticleTaggedView(TagMixin, ListView):
+    model = Article
+    context_object_name = 'articles'
+    template_name = 'articles/article/list.html'
+
+    def get_queryset(self):
+        return Article.objects.filter(tags__slug=self.kwargs.get('slug'))

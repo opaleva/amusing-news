@@ -7,7 +7,9 @@
         {{ article.publish }}, {{ article.author }}
     </p>
     {{ article.body|linebreaks }}
-    <p class="tags">Tags: {{ article.tags.all|join:", " }}</p>
+
+    {% include "articles/article/tags.html" %}
+
     <br>
     {% include "articles/article/share.html" %}
     <br>
