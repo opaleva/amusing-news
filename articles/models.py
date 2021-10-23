@@ -56,7 +56,7 @@ class Comment(models.Model):
     objects = models.Manager()
 
     class Meta:
-        ordering = ('-created',)
+        ordering = ('created',)
 
     def __str__(self):
         return f'{self.name} комментирует {self.article}'

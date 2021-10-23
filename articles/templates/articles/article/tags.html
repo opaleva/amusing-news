@@ -1,5 +1,5 @@
 <p class="tags">
-  Tags:
+  Метки:
   {% for tag in article.tags.all %}
   <a href="{% url "articles:articles_by_tag" tag.slug %}">
   {{ tag.name }}</a>

@@ -1,3 +1,5 @@
+from django import http
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
@@ -50,14 +52,17 @@ class ArticleView(DetailView):
             new_comment = form.save(commit=False)
             new_comment.article = article
             new_comment.save()
+            new_comment = CommentForm()
             context['new_comment'] = new_comment
-            return self.render_to_response(context=context)
+            return http.HttpResponseRedirect('')
+
         return self.render_to_response(context=context)
 
 
 class ArticleTaggedView(TagMixin, ListView):
     model = Article
     context_object_name = 'articles'
+    paginate_by = 10
     template_name = 'articles/article/list.html'
 
     def get_queryset(self):

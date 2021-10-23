@@ -19,7 +19,7 @@
         {{ article.body|truncatewords:30|linebreaks }}
 
         {% with article.comments.count as total_comments %}
-            <a href="{{ article.get_absolute_url }}"><h4>
+            <a href="{{ article.get_absolute_url }}#comments"><h4>
                 {{ total_comments }} comment{{ total_comments|pluralize }}
             </h4></a>
         {% endwith %}
