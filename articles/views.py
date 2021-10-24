@@ -1,5 +1,4 @@
 from django import http
-from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
