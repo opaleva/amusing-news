@@ -41,11 +41,6 @@ class ArticleView(DetailView):
         self.object = self.get_object()
         context = super(ArticleView, self).get_context_data(**kwargs)
         article = Article.objects.filter(id=self.kwargs['pk'])[0]
-        comments = article.comments.all()
-
-        context['comments'] = comments
-        context['form'] = form
-        context['article'] = article
 
         if form.is_valid():
             new_comment = form.save(commit=False)

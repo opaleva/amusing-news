@@ -1,24 +1,42 @@
+@font-face {
+    font-family: 'windsorold_styleregular';
+    src: url('fonts/windsorold_style.woff2') format('woff2'),
+    url('fonts/windsorold_style.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'windsorcregular';
+    src: url('fonts/windsorc.woff2') format('woff2'),
+    url('fonts/windsorc.woff') format('woff');
+}
 
 body {
+    font-family: 'windsorcregular', serif;
     margin:0;
     padding:0;
-    font-family:helvetica, sans-serif;
 }
 
 a {
-    color:#00abff;
+    color: #570808;
     text-decoration:none;
 }
 
 h1 {
-    font-weight:normal;
+    font-family: 'windsorold_styleregular', serif;
+    font-weight: bold;
     border-bottom:1px solid #bbb;
     padding:0 0 10px 0;
 }
 
 h2 {
-    font-weight:normal;
-    margin:30px 0 0;
+    font-family: 'windsorold_styleregular', serif;
+    font-variant: small-caps;
+    margin: 30px 0 0;
+}
+
+.subtitle {
+    font-family: 'windsorcregular', serif;
+    font-size: large;
 }
 
 #content {
@@ -31,13 +49,13 @@ h2 {
     float:right;
     width:30%;
     padding:10px;
+    border-left: 2px #4f4f4f dotted;
     background:#efefef;
     height:100%;
 }
 
 p.date {
-    color:#ccc;
-    font-family: georgia, serif;
+    color:#1a1919;
     font-size: 12px;
     font-style: italic;
 }
@@ -89,5 +107,5 @@ input[type=submit] {
 .comment .info {
     font-weight:bold;
     font-size:12px;
-    color:#666;
+    color: #1a1919;
 }
