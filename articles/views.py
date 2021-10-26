@@ -1,4 +1,5 @@
 from django import http
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
@@ -61,3 +62,15 @@ class ArticleTaggedView(TagMixin, ListView):
 
     def get_queryset(self):
         return Article.objects.filter(tags__slug=self.kwargs.get('slug'))
+
+
+class SearchResultsListView(ListView):
+    model = Article
+    context_object_name = 'articles'
+    template_name = 'articles/article/search.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Article.objects.filter(
+            Q(title__icontains=query) | Q(body__icontains=query)
+        )

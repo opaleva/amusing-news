@@ -7,11 +7,13 @@
   <title>{% block title %}{% endblock %}</title>
   <link href="{% static "css/articles.css" %}" rel="stylesheet">
 </head>
+
 <body>
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
+
   <div id="sidebar">
     <h2>Несерьёзные новости</h2>
     <p class="subtitle">о несерьёзном из серьёзных источников</p>
@@ -27,6 +29,10 @@
       </li>
       {% endfor %}
     </ul>
+
+    <form action="{% url 'articles:search' %}" method="get">
+      <input name="q"  class="search" type="text" placeholder="Искать на сайте" aria-label="Search">
+    </form>
   </div>
 </body>
 </html>
