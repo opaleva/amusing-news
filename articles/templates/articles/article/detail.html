@@ -10,14 +10,6 @@
 
     {% include "articles/article/tags.html" %}
 
-    <h3>Похожие новости</h3>
-    {% for article in article.tags.similar_objects %}
-        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-        <br>
-    {% empty %}
-    Похожих новостей нет.
-    {% endfor %}
-
     {% include "articles/article/share.html" %}
     <br>
     <a href="/">Ко всем новостям</a>

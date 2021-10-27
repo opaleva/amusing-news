@@ -33,6 +33,8 @@
     <form action="{% url 'articles:search' %}" method="get">
       <input name="q"  class="search" type="text" placeholder="Искать на сайте" aria-label="Search">
     </form>
+
+    {% include "articles/article/similar.html" %}
   </div>
 </body>
 </html>
