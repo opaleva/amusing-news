@@ -11,13 +11,17 @@
 }
 
 body {
+    background-color: #9cfcbd;
     font-family: 'windsorcregular', serif;
+    font-size: large;
     margin:0;
     padding:0;
 }
 
 a {
-    color: #570808;
+    color: #165708;
+    font-size: larger;
+    font-weight: bold;
     text-decoration:none;
 }
 
@@ -50,13 +54,13 @@ h2 {
     width:30%;
     padding:10px;
     border-left: 2px #4f4f4f dotted;
-    background:#efefef;
+    background: #72f6a0;
     height:100%;
 }
 
 p.date {
     color:#1a1919;
-    font-size: 12px;
+    font-size: 16px;
     font-style: italic;
 }
 
@@ -84,7 +88,7 @@ input, textarea {
 }
 input[type=submit] {
     font-weight:bold;
-    background:#00abff;
+    background: #016530;
     color:#fff;
     padding:10px 20px;
     font-size:14px;
@@ -102,7 +106,7 @@ input[type=submit] {
     padding:10px;
 }
 .comment:nth-child(even) {
-    background:#efefef;
+    background: #72f6a0;
 }
 .comment .info {
     font-weight:bold;
@@ -115,6 +119,7 @@ input[type=submit] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
+    background-color: #9cfcbd;
     box-sizing: border-box;
     border: 3px solid #ccc;
     font-size: large;
@@ -127,6 +132,10 @@ input[type=submit] {
     border: 3px solid #555;
 }
 
+.share {
+    padding: 8px;
+    justify-items: center;
+}
 /* similar articles */
 #similar {
 

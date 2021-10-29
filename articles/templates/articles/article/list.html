@@ -14,7 +14,7 @@
         {% include "articles/article/tags.html" %}
 
         <p class="date">
-            {{ article.publish }}, {{ article.author }}
+            {{ article.publish }}
         </p>
         {{ article.body|truncatewords:30|linebreaks }}
 

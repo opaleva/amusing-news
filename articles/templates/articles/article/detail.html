@@ -3,10 +3,12 @@
 
 {% block content %}
     <h1>{{ article.title }}</h1>
-    <p class="date">
-        {{ article.publish }}, {{ article.author }}
-    </p>
+
     {{ article.body|linebreaks }}
+
+    <p class="date">
+        {{ article.publish }}
+    </p>
 
     {% include "articles/article/tags.html" %}
 
