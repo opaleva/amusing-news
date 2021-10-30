@@ -33,7 +33,9 @@
     <form action="{% url 'articles:search' %}" method="get">
       <input name="q"  class="search" type="text" placeholder="Искать на сайте" aria-label="Search">
     </form>
-
+    <p>
+      <a href="{% url "articles:feed" %}" target="_blank"><img src="{% static "img/icons/rss.png" %}"></a>
+    </p>
     {% include "articles/article/similar.html" %}
   </div>
 </body>
