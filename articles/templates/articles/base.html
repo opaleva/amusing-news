@@ -36,7 +36,8 @@
     <p>
       <a href="{% url "articles:feed" %}" target="_blank"><img src="{% static "img/icons/rss.png" %}"></a>
     </p>
-    {% include "articles/article/similar.html" %}
+    {% block similar %}
+    {% endblock %}
   </div>
 </body>
 </html>

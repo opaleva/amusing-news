@@ -3,9 +3,14 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
+import logging
+
 from .mixins import TagMixin
 from .models import Article
 from .forms import CommentForm
+
+
+logger = logging.getLogger(__name__)
 
 
 class ArticleListView(ListView):
@@ -15,6 +20,7 @@ class ArticleListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        logger.warning('Start page loaded successfully')
         context['articles'] = Article.published.all()
         return context
 
@@ -35,6 +41,7 @@ class ArticleView(DetailView):
         context['comments'] = comments
         context['form'] = form
         context['article'] = article
+        logger.warning('Article page loaded successfully')
         return context
 
     def post(self, request, *args, **kwargs):
@@ -49,6 +56,7 @@ class ArticleView(DetailView):
             new_comment.save()
             new_comment = CommentForm()
             context['new_comment'] = new_comment
+            logger.warning('Comment has been added')
             return http.HttpResponseRedirect('')
 
         return self.render_to_response(context=context)
@@ -72,5 +80,5 @@ class SearchResultsListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Article.objects.filter(
-            Q(title__icontains=query) | Q(body__icontains=query)
+            Q(title__regex=fr'{query}') | Q(body__regex=fr'{query}')
         )

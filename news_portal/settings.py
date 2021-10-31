@@ -10,6 +10,32 @@ from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'articles' / 'logs' / 'log.log',
+            'formatter': 'portal_formatter',
+        }
+    },
+    'loggers': {
+        'articles': {
+            'handlers': ['file'],
+            'level': 'WARNING',
+            'propagate': True
+        }
+    },
+    'formatters': {
+        'portal_formatter': {
+            'format': '[{levelname}] TIME: {asctime} IN -> {module} <- PID:{process:d} THID:{thread:d} --> {message}',
+            'style': '{'
+        }
+    },
+
+}
 # Quick-start development settings - unsuitable for production
 with open(os.path.join(os.path.dirname(__file__), 'secrets.json'), 'r') as f:
     secrets = json.loads(f.read())
@@ -32,6 +58,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    '192.168.0.101'
 ]
 
 SITE_ID = 1
