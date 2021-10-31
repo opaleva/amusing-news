@@ -1,4 +1,6 @@
 {% extends "articles/base.html" %}
+{% load static %}
+{% load article_tags %}
 
 {% block title %}Все новости{% endblock %}
 
@@ -26,4 +28,23 @@
         <hr>
     {% endfor %}
     {% include "pagination.html" with page=page_obj %}
+{% endblock %}
+
+{% block also %}
+    <p>На сегодня у нас новостей: {% numbers %}</p>
+
+    <div class="also">
+    <h3>Сейчас обсуждают:</h3>
+    {% get_popular as popular %}
+        {% for article in popular %}
+            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a> {{ article.comments.count }} комментариев
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block feed %}
+    <p>
+        <a href="{% url "articles:feed" %}" target="_blank"><img src="{% static "img/icons/rss.png" %}"></a>
+    </p>
 {% endblock %}

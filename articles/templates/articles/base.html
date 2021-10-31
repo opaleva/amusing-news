@@ -18,26 +18,18 @@
     <h2>Несерьёзные новости</h2>
     <p class="subtitle">о несерьёзном из серьёзных источников</p>
 
-    <p>На сегодня у нас новостей: {% numbers %}</p>
+    {% block feed %}
+    {% endblock %}
 
-    <h3>Сейчас обсуждают:</h3>
-    {% get_popular as popular %}
-    <ul>
-      {% for article in popular %}
-      <li>
-        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a> {{ article.comments.count }} комментариев
-      </li>
-      {% endfor %}
-    </ul>
+    {% block also %}
+    {% endblock %}
 
     <form action="{% url 'articles:search' %}" method="get">
       <input name="q"  class="search" type="text" placeholder="Искать на сайте" aria-label="Search">
     </form>
-    <p>
-      <a href="{% url "articles:feed" %}" target="_blank"><img src="{% static "img/icons/rss.png" %}"></a>
-    </p>
-    {% block similar %}
-    {% endblock %}
+
+
+
   </div>
 </body>
 </html>
