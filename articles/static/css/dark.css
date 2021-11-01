@@ -11,7 +11,8 @@
 }
 
 body {
-    background-color: #d7d192;
+    background-color: #232217;
+    color: #fdf6a6;
     font-family: 'windsorcregular', serif;
     font-size: large;
     margin:0;
@@ -19,7 +20,7 @@ body {
 }
 
 a {
-    color: #724d04;
+    color: #f8ea51;
     font-size: larger;
     font-weight: bold;
     text-decoration:none;
@@ -59,7 +60,7 @@ h3 {
     padding: 0 30px 30px;
     border-bottom: 2px #4f4f4f dotted;
     border-left: 2px #4f4f4f dotted;
-    background: #b9b47f;
+    background: #3a3826;
     height:100%;
 }
 
@@ -93,7 +94,7 @@ input, textarea {
 }
 input[type=submit] {
     font-weight:bold;
-    background: #016530;
+    background: #fdf6a6;
     color:#fff;
     padding:10px 20px;
     font-size:14px;
@@ -111,7 +112,7 @@ input[type=submit] {
     padding:10px;
 }
 .comment:nth-child(even) {
-    background: #d7d192;
+    background: #313020;
 }
 .comment .info {
     font-weight:bold;
@@ -124,9 +125,9 @@ input[type=submit] {
     width: 68%;
     padding: 12px 20px;
     margin: 8px 0;
-    background-color: #fcf5ad;
+    background-color: #3f3d2d;
     box-sizing: border-box;
-    border: 1px solid #6c6949;
+    border: 1px solid #fdf6a6;
     font-size: large;
     -webkit-transition: 0.5s;
     transition: none;
@@ -134,7 +135,7 @@ input[type=submit] {
 }
 
 .search:focus {
-    border: 2px solid #28980f;
+    border: 2px solid #232217;
 }
 
 .share {
