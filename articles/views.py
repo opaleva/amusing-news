@@ -80,5 +80,5 @@ class SearchResultsListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Article.objects.filter(
-            Q(title__regex=fr'{query}') | Q(body__regex=fr'{query}')
+            Q(title__regex=fr' {query} ') | Q(body__regex=fr' {query} ')
         )

@@ -121,6 +121,7 @@ DATABASES = {
         'USER': get_secret('DATABASE_USER'),
         'PASSWORD': get_secret('DATABASE_PASSWORD'),
         'HOST': 'localhost',
+        # HOST: 'postgresdb',
         'PORT': '5432',
     }
 }

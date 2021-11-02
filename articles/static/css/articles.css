@@ -121,13 +121,11 @@ input[type=submit] {
 
 /* search */
 .search {
-    width: 68%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    width: 80%;
     background-color: #fcf5ad;
     box-sizing: border-box;
     border: 1px solid #6c6949;
-    font-size: large;
+    font-size: larger;
     -webkit-transition: 0.5s;
     transition: none;
     outline: none;
