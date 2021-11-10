@@ -16,6 +16,7 @@ body {
     font-size: large;
     margin:0;
     padding:0;
+    color: #333121;
 }
 
 a {
@@ -48,13 +49,16 @@ h3 {
 }
 
 #content {
-    float:left;
-    width:60%;
+    float: right;
+    width: 68%;
     padding:0 0 0 30px;
+    margin-right: 30px;
+    font-size: larger;
+
 }
 
 #sidebar {
-    float:right;
+    position: fixed;
     width:20%;
     padding: 0 30px 30px;
     border-bottom: 2px #4f4f4f dotted;
@@ -64,9 +68,10 @@ h3 {
 }
 
 p.date {
-    color:#1a1919;
-    font-size: 16px;
-    font-style: italic;
+    font-size: medium;
+    font-variant: small-caps;
+    font-weight: bolder;
+    color: #575533;
 }
 
 /* pagination */
@@ -114,9 +119,10 @@ input[type=submit] {
     background: #d7d192;
 }
 .comment .info {
-    font-weight:bold;
-    font-size:12px;
-    color: #1a1919;
+    font-size: medium;
+    font-variant: small-caps;
+    font-weight: bolder;
+    color: #575533;
 }
 
 /* search */
@@ -142,4 +148,16 @@ input[type=submit] {
 /* similar articles */
 .also {
     padding-bottom: 20px;
+}
+
+/*images */
+.cover {
+    width: 100%;
+    object-fit: cover;
+}
+
+.cover-list {
+    width: 50%;
+    border-radius: 5%;
+    object-fit: cover;
 }

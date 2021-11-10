@@ -24,6 +24,7 @@ class Article(models.Model):
                             unique_for_date='publish')
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='featured_image/%Y/%m/%d/')
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
@@ -45,6 +46,11 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
 
 
 class Comment(models.Model):

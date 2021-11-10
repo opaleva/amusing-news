@@ -4,11 +4,12 @@
 {% block content %}
     <h1>{{ article.title }}</h1>
 
-    {{ article.body|linebreaks }}
-
     <p class="date">
         {{ article.publish }}
     </p>
+
+    <img src="{{ article.image_url|default_if_none:'#' }}" class="cover" alt="{{article.title}}">
+    {{ article.body|linebreaks }}
 
     {% include "articles/article/tags.html" %}
 

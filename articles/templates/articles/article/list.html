@@ -13,12 +13,15 @@
             </a>
         </h2>
 
-        {% include "articles/article/tags.html" %}
-
         <p class="date">
             {{ article.publish }}
         </p>
+
+        <img src="{{ article.image_url|default_if_none:'#' }}" class="cover-list" alt="{{article.title}}">
+
         {{ article.body|truncatewords:30|linebreaks }}
+
+        {% include "articles/article/tags.html" %}
 
         {% with article.comments.count as total_comments %}
             <a href="{{ article.get_absolute_url }}#comments"><h4>
@@ -31,14 +34,16 @@
 {% endblock %}
 
 {% block also %}
-    <p>На сегодня у нас новостей: {% numbers %}</p>
+
 
     <div class="also">
     <h3>Сейчас обсуждают:</h3>
     {% get_popular as popular %}
-        {% for article in popular %}
-            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a> {{ article.comments.count }} комментариев
+        {% for article in popular|slice:':3' %}
+            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
             <br>
+            {{ article.comments.count }} комментариев
+            <hr>
         {% endfor %}
     </div>
 {% endblock %}
