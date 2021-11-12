@@ -30,9 +30,6 @@ test:
 upd-id:
 	sudo -u postgres psql ${db} -c 'ALTER SEQUENCE ${seq} RESTART; UPDATE ${tab} SET id = DEFAULT;'
 
-heroku:
-	git push heroku master
-
 deploy:
 	docker-compose build
 	docker-compose up -d

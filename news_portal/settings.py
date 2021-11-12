@@ -4,10 +4,9 @@ Django settings for news_portal project.
 import json
 import os
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.core.exceptions import ImproperlyConfigured
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 LOGGING = {
@@ -34,8 +33,8 @@ LOGGING = {
             'style': '{'
         }
     },
-
 }
+
 # Quick-start development settings - unsuitable for production
 with open(os.path.join(os.path.dirname(__file__), 'secrets.json'), 'r') as f:
     secrets = json.loads(f.read())
@@ -62,8 +61,8 @@ ALLOWED_HOSTS = [
 ]
 
 SITE_ID = 1
-# Application definition
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -97,7 +96,7 @@ ROOT_URLCONF = 'news_portal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,8 +111,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'news_portal.wsgi.application'
 
-# Database
 
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -126,8 +125,8 @@ DATABASES = {
     }
 }
 
-# Password validation
 
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -143,8 +142,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
 
+# Internationalization
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Moscow'
@@ -160,7 +159,6 @@ LOCALE_PATHS = [
 ]
 
 # Static files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 

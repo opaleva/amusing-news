@@ -80,11 +80,11 @@ class SearchResultsListView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        # return Article.objects.filter(
-        #     Q(title__regex=fr' {query} ') | Q(body__regex=fr' {query} ')
-        # )
-        result = Article.objects.filter(Q(title__regex=fr' {query} ') | Q(body__regex=fr' {query} '))
-        if not result:
-            return ["НИЧЕГО НЕ НАЙДЕНО"]
-        else:
+        result = Article.objects.filter(Q(title__regex=fr'{query}') | Q(body__regex=fr'{query}'))
+        if result:
+            if len(query) < 3:
+                return ["Слово для поиска не должно быть короче 3 символов"]
             return result
+        else:
+            return ["Ничего не найдено"]
+
