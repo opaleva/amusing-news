@@ -1,4 +1,4 @@
-{% extends "articles/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% load article_tags %}
 
@@ -41,8 +41,7 @@
     <h3>Сейчас обсуждают:</h3>
     {% get_popular as popular %}
         {% for article in popular|slice:':3' %}
-            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-            <br>
+            <a class="similar" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
             {{ article.comments.count }} комментариев
             <hr>
         {% endfor %}

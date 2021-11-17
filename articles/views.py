@@ -1,6 +1,5 @@
 from django import http
 from django.db.models import Q
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 
@@ -87,4 +86,3 @@ class SearchResultsListView(ListView):
             return result
         else:
             return ["Ничего не найдено"]
-

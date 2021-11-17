@@ -45,3 +45,6 @@ src/.idea/
 
 # Secrets
 /news_portal/secrets.json
+/media/
+
+/.gitignore

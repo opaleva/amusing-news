@@ -25,7 +25,10 @@
     {% endblock %}
 
     <form action="{% url 'articles:search' %}" method="get">
-      <input name="q"  class="search" type="text" placeholder="Искать на сайте  ⏎" aria-label="Search">
+        <div class="search_form">
+            <input name="q" class="search" type="text" placeholder="Искать на сайте" aria-label="Search">
+            <input class="magnifier" type="submit" value="🔍">
+        </div>
     </form>
   </div>
 </body>

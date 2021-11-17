@@ -11,5 +11,10 @@ class CommentForm(forms.ModelForm):
         labels = {
             "name": "Имя",
             "mail": "Email",
-            "text": "Комментарий",
+            "text": "",
+        }
+
+        widgets = {
+            "text": forms.Textarea(
+                attrs={'placeholder': 'Есть что сказать?'}),
         }

@@ -1,8 +1,7 @@
 <div class="also">
     <h3>Похожие новости</h3>
     {% for article in article.tags.similar_objects|slice:':7' %}
-    <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-    <br>
+    <a class="similar" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
     {% empty %}
     Похожих новостей нет.
     {% endfor %}
