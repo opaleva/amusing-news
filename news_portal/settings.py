@@ -13,16 +13,39 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'file': {
+        'articles_warning': {
             'level': 'WARNING',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'articles' / 'logs' / 'log.log',
+            'filename': BASE_DIR / 'logs' / 'articles_warning.log',
             'formatter': 'portal_formatter',
-        }
+        },
+        'articles_error': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'articles_error.log',
+            'formatter': 'portal_formatter',
+        },
+        'users_warning': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'users_warning.log',
+            'formatter': 'portal_formatter',
+        },
+        'users_error': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'users_error.log',
+            'formatter': 'portal_formatter',
+        },
     },
     'loggers': {
         'articles': {
-            'handlers': ['file'],
+            'handlers': ['articles_warning', 'articles_error'],
+            'level': 'WARNING',
+            'propagate': True
+        },
+        'users': {
+            'handlers': ['users_warning', 'users_error'],
             'level': 'WARNING',
             'propagate': True
         }
@@ -77,6 +100,7 @@ INSTALLED_APPS = [
     'taggit',
     'utils.sharing',
     'articles.apps.ArticlesConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,6 +165,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 
 # Internationalization

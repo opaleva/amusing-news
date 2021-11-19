@@ -9,6 +9,9 @@ freeze:
 run:
 	python3.9 manage.py runserver ${p}
 
+prod:
+	python3.9 manage.py runserver --insecure
+
 shell:
 	python3.9 manage.py shell
 

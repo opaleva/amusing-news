@@ -41,7 +41,7 @@ class ArticleView(DetailView):
         context['comments'] = comments
         context['form'] = form
         context['article'] = article
-        logger.warning('Article page loaded successfully')
+        logger.critical('Article page loaded successfully')
         return context
 
     def post(self, request, *args, **kwargs):
