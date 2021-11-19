@@ -17,7 +17,9 @@
             {{ article.publish }}
         </p>
         {% if article.image_url %}
-        <img src="{{ article.image_url|default_if_none:'#' }}" class="cover-list" alt="{{article.title}}">
+            <a href="{{ article.get_absolute_url }}">
+                <img src="{{ article.image_url|default_if_none:'#' }}" class="cover-list" alt="{{article.title}}">
+            </a>
         {% endif %}
 
         {{ article.body|truncatewords:30|linebreaks }}

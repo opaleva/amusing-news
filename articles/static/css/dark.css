@@ -207,12 +207,15 @@ input[type=submit] {
 
 /*images */
 .cover {
-    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
     object-fit: cover;
 }
 
 .cover-list {
-    width: 50%;
+    width: 30%;
     border-radius: 5%;
     object-fit: cover;
 }

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 import logging
 from taggit.managers import TaggableManager
 
+from news_portal import settings
 
 logger = logging.getLogger()
 
@@ -22,7 +23,7 @@ class Article(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
                             unique_for_date='publish')
-    author = models.ForeignKey(User,
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
     image = models.ImageField(upload_to='featured_image/%Y/%m/%d/')
     body = models.TextField()
