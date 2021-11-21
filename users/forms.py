@@ -10,16 +10,17 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = UserCreationForm.Meta.fields + ('city',)
 
-    labels = {
-        "username": "Имя",
-        # "email": "Email",
-        "city": "Город",
-    }
 
-    # widgets = {
-    #     "text": forms.Textarea(
-    #         attrs={'placeholder': 'Есть что сказать?'}),
-    # }
+class RewrittenCreationForm(CustomUserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].help_text = ''
+        self.fields['username'].label = 'Имя'
+        self.fields['city'].label = 'Из какого вы города:'
+        self.fields['password1'].help_text = ''
+        self.fields['password1'].label = "Придумайте пароль (не менее 8 символов)"
+        self.fields['password2'].help_text = ''
+        self.fields['password2'].label = "Повторите пароль"
 
 
 class CustomUserChangeForm(UserChangeForm):

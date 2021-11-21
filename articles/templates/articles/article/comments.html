@@ -1,14 +1,7 @@
-{% with comments.count as total_comments %}
-<h4>
-    {{ total_comments }} comment{{ total_comments|pluralize }}
-</h4>
-
-{% endwith %}
-
 {% for comment in comments %}
     <div class="comment" id="comments">
         <p class="info">
-            Comment {{ forloop.counter }} by {{ comment.name }}
+            Comment {{ forloop.counter }} by {{ comment.author }}
             {{ comment.created }}
         </p>
         {{ comment.text|linebreaks }}
@@ -16,18 +9,32 @@
     {% empty %}
     <p>There are no comments yet.</p>
 {% endfor %}
+
+{% include "pagination.html" with page=comments %}
+
 {% if new_comment %}
     <h3>Комментарий добавлен.</h3>
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Add comment"></p>
-    </form>
+    {% if user.is_authenticated %}
+        <h3>Прокомментировать</h3>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Отправить"></p>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Войдите</a> или
+        <a href="{% url 'signup' %}">зарегистрируйтесь</a>, чтобы оставить комментарий
+    {% endif %}
 {% else %}
-    <h3>Прокомментировать</h3>
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Add comment"></p>
-    </form>
+    {% if user.is_authenticated %}
+        <h3>Прокомментировать</h3>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Отправить"></p>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Войдите</a> или
+        <a href="{% url 'signup' %}">зарегистрируйтесь</a>, чтобы оставить комментарий
+    {% endif %}
 {% endif %}

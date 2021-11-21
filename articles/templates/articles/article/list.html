@@ -37,9 +37,13 @@
 {% endblock %}
 
 {% block also %}
-
-
     <div class="also">
+    {% if user.is_authenticated %}
+        Привет, {{ user.username }}!
+        <p><a href="{% url 'logout' %}">Выход</a></p>
+    {% else %}
+        <a href="{% url 'login' %}">Вход</a> |<a href="{% url 'signup' %}">Регистрация</a>
+    {% endif %}
     <h3>Сейчас обсуждают:</h3>
     {% get_popular as popular %}
         {% for article in popular|slice:':3' %}

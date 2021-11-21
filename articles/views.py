@@ -2,6 +2,7 @@ from django import http
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
+from django.core.paginator import Paginator
 
 import logging
 
@@ -37,8 +38,10 @@ class ArticleView(DetailView):
         form = CommentForm()
         article = get_object_or_404(Article, pk=pk, slug=slug)
         comments = article.comments.all()
+        paginator = Paginator(comments, 20)
+        page = self.request.GET.get('page')
 
-        context['comments'] = comments
+        context['comments'] = paginator.get_page(page)
         context['form'] = form
         context['article'] = article
         logger.critical('Article page loaded successfully')
@@ -53,6 +56,7 @@ class ArticleView(DetailView):
         if form.is_valid():
             new_comment = form.save(commit=False)
             new_comment.article = article
+            new_comment.author = request.user
             new_comment.save()
             new_comment = CommentForm()
             context['new_comment'] = new_comment

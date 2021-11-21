@@ -167,7 +167,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
-
+LOGIN_REDIRECT_URL = 'articles:articles'
+LOGOUT_REDIRECT_URL = 'articles:articles'
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
