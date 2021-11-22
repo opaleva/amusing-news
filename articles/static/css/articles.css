@@ -121,7 +121,7 @@ input[type=submit] {
     padding:10px;
 }
 .comment:nth-child(even) {
-    background: #d7d192;
+    background: #bdb87e;
 }
 .comment .info {
     font-size: medium;

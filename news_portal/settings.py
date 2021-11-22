@@ -96,6 +96,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'channels',
+    'crispy_forms',
     'debug_toolbar',
     'taggit',
     'utils.sharing',
@@ -117,6 +119,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'news_portal.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -134,7 +137,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'news_portal.wsgi.application'
+ASGI_APPLICATION = 'news_portal.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)]
+        }
+    }
+}
 
 # Database
 DATABASES = {

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{#{% load static %}#}
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
@@ -22,3 +23,41 @@
     {% include "articles/article/similar.html" %}
 {% endblock %}
 
+{% block js_script %}
+    <script>
+        const commentsSocket = new WebSocket(
+            "ws://"
+            + window.location.host
+            + "/articles/"
+            + "{{ article.id }}"
+            + "/"
+        )
+
+        commentsSocket.onmessage = function (e) {
+            const data = JSON.parse(e.data)
+            const commentsList = document.getElementById('comments');
+            commentsList.insertAdjacentHTML(
+                "beforeend",
+                '<div class="comment">\n' +
+                '<p class="info">' +
+                'от ' + data['message']['author'] +
+                data['message']['created'] +
+                '</p>\n' +
+                data['message']['text'] +
+                '</div>'
+            )
+        };
+
+        document.querySelector("#send_comment").onclick = function (e) {
+
+            e.preventDefault()
+            const message = document.querySelector("#id_text");
+            const text = message.value;
+
+            commentsSocket.send(JSON.stringify({
+                "text": text
+            }));
+            message.value = '';
+        }
+    </script>
+{% endblock js_script %}

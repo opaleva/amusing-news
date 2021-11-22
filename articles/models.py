@@ -69,4 +69,4 @@ class Comment(models.Model):
         ordering = ('created',)
 
     def __str__(self):
-        return f'{self.author} комментирует {self.article}'
+        return f'{self.author} - {self.text}'

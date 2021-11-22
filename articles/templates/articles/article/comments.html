@@ -1,14 +1,16 @@
-{% for comment in comments %}
-    <div class="comment" id="comments">
+<div id="comments">
+    {% for comment in comments %}
+    <div class="comment">
         <p class="info">
-            Comment {{ forloop.counter }} by {{ comment.author }}
+            #{{ forloop.counter }} от {{ comment.author }}
             {{ comment.created }}
         </p>
         {{ comment.text|linebreaks }}
     </div>
-    {% empty %}
-    <p>There are no comments yet.</p>
-{% endfor %}
+        {% empty %}
+        <p>Пока комментариев нет</p>
+    {% endfor %}
+</div>
 
 {% include "pagination.html" with page=comments %}
 
@@ -19,7 +21,7 @@
         <form method="post">
             {{ form.as_p }}
             {% csrf_token %}
-            <p><input type="submit" value="Отправить"></p>
+            <p><input type="submit" id="send_comment" value="Отправить"></p>
         </form>
     {% else %}
         <a href="{% url 'login' %}">Войдите</a> или
@@ -31,7 +33,7 @@
         <form method="post">
             {{ form.as_p }}
             {% csrf_token %}
-            <p><input type="submit" value="Отправить"></p>
+            <p><input type="submit" id="send_comment" value="Отправить"></p>
         </form>
     {% else %}
         <a href="{% url 'login' %}">Войдите</a> или
