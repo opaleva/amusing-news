@@ -5,7 +5,7 @@ from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 import logging
 
-from articles.models import Comment
+from comments.models import Comment
 from articles.models import Article
 
 logger = logging.getLogger(__name__)

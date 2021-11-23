@@ -1,6 +1,9 @@
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.urls import reverse
 from django.utils import timezone
+
 import logging
 from taggit.managers import TaggableManager
 
@@ -19,13 +22,13 @@ class Article(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
                             unique_for_date='publish')
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.CASCADE)
     image = models.ImageField(upload_to='featured_image/%Y/%m/%d/')
-    body = models.TextField()
+    content = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -36,13 +39,20 @@ class Article(models.Model):
     objects = models.Manager()
     published = PublishedManager()
     tags = TaggableManager()
+    comments = GenericRelation('comments.Comment')
 
     class Meta:
         ordering = ('-publish',)
 
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.created = timezone.now()
+        self.updated = timezone.now()
+        return super().save(*args, **kwargs)
+
     def get_absolute_url(self):
         return reverse('articles:article',
-                       args=[self.pk, self.slug])
+                       kwargs={'article_slug': self.slug})
 
     def __str__(self):
         return self.title
@@ -51,22 +61,3 @@ class Article(models.Model):
     def image_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
-
-
-class Comment(models.Model):
-    article = models.ForeignKey(Article,
-                                on_delete=models.CASCADE,
-                                related_name='comments')
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.CASCADE)
-    text = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    active = models.BooleanField(default=True)
-    objects = models.Manager()
-
-    class Meta:
-        ordering = ('created',)
-
-    def __str__(self):
-        return f'{self.author} - {self.text}'

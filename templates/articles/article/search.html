@@ -10,7 +10,7 @@
 {% for article in articles %}
 <div>
     <h3><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
-    {{ article.body|truncatewords:30|linebreaks }}
+    {{ article.content|truncatewords:30|linebreaks }}
 </div>
 {% endfor %}
 {% endblock content %}

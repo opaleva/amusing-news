@@ -8,7 +8,7 @@ from .models import Article
 
 class LatestArticlesFeed(Feed):
     title = 'Несерьёзные новости'
-    link = reverse_lazy('articles:articles')
+    link = reverse_lazy('articles:index')
     description = 'Новые несерьёзные новости'
     feed_type = Atom1Feed
 
@@ -19,4 +19,4 @@ class LatestArticlesFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return truncatewords(item.body, 30)
+        return truncatewords(item.content, 30)

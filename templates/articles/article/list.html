@@ -22,7 +22,7 @@
             </a>
         {% endif %}
 
-        {{ article.body|truncatewords:30|linebreaks }}
+        {{ article.content|truncatewords:30|linebreaks }}
 
         {% include "articles/article/tags.html" %}
 
@@ -33,7 +33,7 @@
         {% endwith %}
         <hr>
     {% endfor %}
-    {% include "pagination.html" with page=page_obj %}
+    {% include "articles/pagination.html" with page=page_obj %}
 {% endblock %}
 
 {% block also %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{#{% load static %}#}
+
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
     </p>
 
     <img src="{{ article.image_url|default_if_none:'#' }}" class="cover" alt="{{article.title}}">
-    {{ article.body|linebreaks }}
+    {{ article.context|linebreaks }}
 
     {% include "articles/article/tags.html" %}
 
@@ -40,7 +40,7 @@
                 "beforeend",
                 '<div class="comment">\n' +
                 '<p class="info">' +
-                'от ' + data['message']['author'] +
+                'от ' + data['message']['author'] + ' ' +
                 data['message']['created'] +
                 '</p>\n' +
                 data['message']['text'] +

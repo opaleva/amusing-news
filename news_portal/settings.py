@@ -103,6 +103,7 @@ INSTALLED_APPS = [
     'utils.sharing',
     'articles.apps.ArticlesConfig',
     'users.apps.UsersConfig',
+    'comments.apps.CommentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -143,7 +144,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('localhost', 6379)]
+            'hosts': [('192.168.0.101', 6379)]
         }
     }
 }
@@ -179,8 +180,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
-LOGIN_REDIRECT_URL = 'articles:articles'
-LOGOUT_REDIRECT_URL = 'articles:articles'
+LOGIN_REDIRECT_URL = 'articles:index'
+LOGOUT_REDIRECT_URL = 'articles:index'
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
