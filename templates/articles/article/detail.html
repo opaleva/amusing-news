@@ -10,7 +10,7 @@
     </p>
 
     <img src="{{ article.image_url|default_if_none:'#' }}" class="cover" alt="{{article.title}}">
-    {{ article.context|linebreaks }}
+    {{ article.content|linebreaks }}
 
     {% include "articles/article/tags.html" %}
 

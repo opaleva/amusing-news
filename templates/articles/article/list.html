@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load article_tags %}
+{% load pluralize %}
 
 {% block title %}Все новости{% endblock %}
 
@@ -26,11 +27,9 @@
 
         {% include "articles/article/tags.html" %}
 
-        {% with article.comments.count as total_comments %}
-            <a href="{{ article.get_absolute_url }}#comments"><h4>
-                {{ total_comments }} comment{{ total_comments|pluralize }}
-            </h4></a>
-        {% endwith %}
+        <a href="{{ article.get_absolute_url }}#comments"><h4>
+            {{ article.comments.count }} {{ article.comments.count|pluralize }}
+        </h4></a>
         <hr>
     {% endfor %}
     {% include "articles/pagination.html" with page=page_obj %}
@@ -48,7 +47,7 @@
     {% get_popular as popular %}
         {% for article in popular|slice:':3' %}
             <a class="similar" href="{{ article.get_absolute_url }}">{{ article.title }}</a>
-            {{ article.comments.count }} комментариев
+            {{ article.comments.count }} {{ article.comments.count|pluralize }}
             <hr>
         {% endfor %}
     </div>
@@ -56,6 +55,7 @@
 
 {% block feed %}
     <p>
-        <a href="{% url "articles:feed" %}" target="_blank"><img src="{% static "img/icons/rss.png" %}" width="100%"></a>
+        <a href="{% url "articles:feed" %}" target="_blank">
+        <img src="{% static "img/icons/rss.png" %}" alt="rss" width="100%"></a>
     </p>
 {% endblock %}

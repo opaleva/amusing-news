@@ -48,3 +48,4 @@ src/.idea/
 /media/
 
 /.gitignore
+/cached_data/

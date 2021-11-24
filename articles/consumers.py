@@ -27,7 +27,7 @@ class CommentsConsumer(AsyncWebsocketConsumer):
 
     async def disconnect(self, code):
         logger.warning('Disconnection')
-        await self.channel_layer.discard(
+        await self.channel_layer.group_discard(
             self.article_group_name,
             self.channel_name
         )

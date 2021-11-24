@@ -1,6 +1,7 @@
 """
 ASGI config for news_portal project.
 """
+from .wsgi import *
 import os
 
 from channels.routing import ProtocolTypeRouter, URLRouter

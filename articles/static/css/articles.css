@@ -67,7 +67,7 @@ h3 {
     position: fixed;
     padding: 0 30px 30px;
     border-bottom: 2px #4f4f4f dotted;
-    border-left: 2px #4f4f4f dotted;
+    border-right: 2px #4f4f4f dotted;
     background: #b9b47f;
     height:100%;
 }

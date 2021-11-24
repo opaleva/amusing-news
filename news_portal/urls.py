@@ -7,16 +7,16 @@ from django.urls import path, include
 
 import debug_toolbar
 
+from news_portal import settings
 from articles.sitemaps import ArticleSitemap
 
-from news_portal import settings
 
 sitemaps = {
     'articles': ArticleSitemap
 }
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('veryimportantpage/', admin.site.urls),
     path('comments/', include('comments.urls', namespace='comments')),
     path("users/", include("users.urls")),
     path("users/", include("django.contrib.auth.urls")),
