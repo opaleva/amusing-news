@@ -1,4 +1,5 @@
 import json
+import locale
 
 from django.contrib.contenttypes.models import ContentType
 from channels.db import database_sync_to_async
@@ -14,7 +15,7 @@ logger = logging.getLogger(__name__)
 class CommentsConsumer(AsyncWebsocketConsumer):
 
     async def connect(self):
-        logger.error('Connection')
+        logger.debug('Connection')
         self.article_id = self.scope['url_route']['kwargs']['article_id']
         self.article_group_name = 'article_%s' % self.article_id
 
@@ -36,9 +37,11 @@ class CommentsConsumer(AsyncWebsocketConsumer):
         text_data_json = json.loads(text_data)
         comment = text_data_json['text']
         new_comment = await self.create_new(comment)
+        locale.setlocale(locale.LC_TIME, "de_DE.utf8")
         data = {
             'author': new_comment.author.username,
-            'created': new_comment.created.strftime('%Y-%m-%d %H:%m'),
+            'city': new_comment.author.city,
+            'created': new_comment.created.strftime('%-d. %B %Y %H:%M'),
             'text': new_comment.text
         }
 

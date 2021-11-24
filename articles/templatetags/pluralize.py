@@ -13,7 +13,7 @@ def pluralize(value, arg="комментарий, комментария, ком
 
     if x == 1 and y != 11:
         return args[0]
-    elif 4 <= x <= 2 and (y < 10 or y >= 20):
+    elif 4 >= x >= 2 and (y < 10 or y >= 20):
         return args[1]
     else:
         return args[2]

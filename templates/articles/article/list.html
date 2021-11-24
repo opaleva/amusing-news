@@ -8,29 +8,31 @@
 {% block content %}
     <h1>Все новости</h1>
     {% for article in articles %}
-        <h2>
-            <a href="{{ article.get_absolute_url }}">
-                {{ article.title }}
-            </a>
-        </h2>
+        <div class="article">
+            <p class="title">
+                <a href="{{ article.get_absolute_url }}">
+                    {{ article.title }}
+                </a>
+            </p>
 
-        <p class="date">
-            {{ article.publish }}
-        </p>
-        {% if article.image_url %}
-            <a href="{{ article.get_absolute_url }}">
-                <img src="{{ article.image_url|default_if_none:'#' }}" class="cover-list" alt="{{article.title}}">
-            </a>
-        {% endif %}
+            <p class="date">
+                {{ article.publish }}
+            </p>
+            {% if article.image_url %}
+                <a href="{{ article.get_absolute_url }}">
+                    <img src="{{ article.image_url|default_if_none:'#' }}" class="cover-list" alt="{{article.title}}">
+                </a>
+            {% endif %}
 
-        {{ article.content|truncatewords:30|linebreaks }}
+            {{ article.content|truncatewords:30|linebreaks }}
 
-        {% include "articles/article/tags.html" %}
+            {% include "articles/article/tags.html" %}
 
-        <a href="{{ article.get_absolute_url }}#comments"><h4>
-            {{ article.comments.count }} {{ article.comments.count|pluralize }}
-        </h4></a>
-        <hr>
+            <a href="{{ article.get_absolute_url }}#comments"><h4>
+                {{ article.comments.count }} {{ article.comments.count|pluralize }}
+            </h4></a>
+            <hr>
+        </div>
     {% endfor %}
     {% include "articles/pagination.html" with page=page_obj %}
 {% endblock %}
@@ -39,7 +41,7 @@
     <div class="also">
     {% if user.is_authenticated %}
         Привет, {{ user.username }}!
-        <p><a href="{% url 'logout' %}">Выход</a></p>
+        <p class="exit"><a href="{% url 'logout' %}">Выход</a></p>
     {% else %}
         <a href="{% url 'login' %}">Вход</a> |<a href="{% url 'signup' %}">Регистрация</a>
     {% endif %}

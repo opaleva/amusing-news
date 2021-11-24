@@ -1,13 +1,13 @@
-from django.shortcuts import render, get_object_or_404
 from django.contrib.contenttypes.models import ContentType
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.views import View
 
-from articles.models import Article
+import logging
 
-from .models import Comment
 from .forms import CommentForm
+
+logger = logging.getLogger(__name__)
 
 
 class CommentCreateView(View):
@@ -23,6 +23,8 @@ class CommentCreateView(View):
             new_comment.text = form.cleaned_data['text']
             new_comment.content_object = model
             new_comment.save()
+            if new_comment is None:
+                logger.error("Problem with posting a comment")
             return HttpResponseRedirect(model.get_absolute_url())
-        messages.add_message(request, messages.ERROR, 'Не удалось оставить комментарий')
+        messages.add_message(request, messages.ERROR, logger.error('Failed to leave a comment'))
         return HttpResponseRedirect(model.get_absolute_url())

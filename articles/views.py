@@ -1,4 +1,3 @@
-from django import http
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
@@ -37,7 +36,9 @@ class ArticleView(DetailView):
         page = self.request.GET.get('page')
         context['comments'] = paginator.get_page(page)
         context['form'] = CommentForm(self.request.POST or None)
-        logger.critical('Article page loaded successfully')
+        logger.debug('Article page loaded successfully')
+        if context is None:
+            logger.error('The page was not loaded')
         return context
 
 
@@ -58,6 +59,8 @@ class SearchResultsListView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
+        if query is None:
+            logger.error('No query')
         result = Article.objects.filter(Q(title__regex=fr'{query}') | Q(content__regex=fr'{query}'))
         if result:
             if len(query) < 3:

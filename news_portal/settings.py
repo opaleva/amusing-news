@@ -13,40 +13,40 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
+        'articles_debug': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs' / 'articles_debug.log',
+            'formatter': 'portal_formatter',
+        },
         'articles_warning': {
             'level': 'WARNING',
             'class': 'logging.FileHandler',
             'filename': BASE_DIR / 'logs' / 'articles_warning.log',
             'formatter': 'portal_formatter',
         },
-        'articles_error': {
-            'level': 'ERROR',
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs' / 'articles_error.log',
-            'formatter': 'portal_formatter',
-        },
-        'users_warning': {
+        'comments_warning': {
             'level': 'WARNING',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs' / 'users_warning.log',
+            'filename': BASE_DIR / 'logs' / 'comments_warning.log',
             'formatter': 'portal_formatter',
         },
-        'users_error': {
-            'level': 'ERROR',
+        'comments_debug': {
+            'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs' / 'users_error.log',
+            'filename': BASE_DIR / 'logs' / 'comments_debug.log',
             'formatter': 'portal_formatter',
         },
     },
     'loggers': {
         'articles': {
-            'handlers': ['articles_warning', 'articles_error'],
-            'level': 'WARNING',
+            'handlers': ['articles_warning', 'articles_debug'],
+            'level': 'DEBUG',
             'propagate': True
         },
-        'users': {
-            'handlers': ['users_warning', 'users_error'],
-            'level': 'WARNING',
+        'comments': {
+            'handlers': ['comments_warning', 'comments_debug'],
+            'level': 'DEBUG',
             'propagate': True
         }
     },
@@ -193,7 +193,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),

@@ -13,7 +13,7 @@
 body {
     background-color: #d7d192;
     font-family: 'windsorcregular', serif;
-    font-size: large;
+    font-size: medium;
     margin:0;
     padding:0;
     color: #333121;
@@ -21,7 +21,7 @@ body {
 
 a {
     color: #724d04;
-    font-size: larger;
+    font-size: large;
     font-weight: bold;
     text-decoration:none;
 }
@@ -45,11 +45,6 @@ h3 {
     margin-bottom: 0;
 }
 
-.subtitle {
-    font-family: 'windsorcregular', serif;
-    font-size: large;
-}
-
 #content {
     position: relative;
     float: right;
@@ -58,6 +53,20 @@ h3 {
     margin-right: 30px;
     font-size: larger;
 
+}
+
+.title {
+    margin-bottom: 0;
+}
+
+.title a {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.article {
+    padding: 5px 35px;
+    background-color: #bdb87e;
 }
 
 #sidebar {
@@ -72,8 +81,19 @@ h3 {
     height:100%;
 }
 
+.subtitle {
+    margin-top: 0;
+    font-family: 'windsorcregular', serif;
+    font-size: large;
+}
+
+.exit {
+    margin-top: 0;
+}
+
 p.date {
-    font-size: medium;
+    margin-top: 0;
+    font-size: small;
     font-variant: small-caps;
     font-weight: bolder;
     color: #575533;
@@ -124,17 +144,24 @@ input[type=submit] {
     background: #bdb87e;
 }
 .comment .info {
+    margin-bottom: 0;
+    margin-top: 0;
     font-size: medium;
     font-variant: small-caps;
     font-weight: bolder;
-    color: #575533;
+    color: #774612;
+}
+
+.comment_text {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 #id_name {
     background-color: #fcf5ad;
     box-sizing: border-box;
     border: 1px solid #6c6949;
-    font-size: larger;
+    font-size: large;
     -webkit-transition: 0.5s;
     transition: none;
     outline: none;
@@ -148,7 +175,7 @@ input[type=submit] {
     background-color: #fcf5ad;
     box-sizing: border-box;
     border: 1px solid #6c6949;
-    font-size: large;
+    font-size: medium;
     -webkit-transition: 0.5s;
     transition: none;
     overflow: auto;
@@ -161,10 +188,11 @@ input[type=submit] {
 .search {
     float: left;
     width: 80%;
+    height: 38px;
     background-color: #fcf5ad;
     box-sizing: border-box;
     border: 1px solid #6c6949;
-    font-size: larger;
+    font-size: large;
     -webkit-transition: 0.5s;
     transition: none;
     outline: none;

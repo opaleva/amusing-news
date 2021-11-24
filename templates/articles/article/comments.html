@@ -1,11 +1,14 @@
+{% load crispy_forms_tags %}
 <div id="comments">
     {% for comment in comments %}
     <div class="comment">
         <p class="info">
-            #{{ forloop.counter }} от {{ comment.author }}
+            {{ comment.author }}, {{ comment.author.city }},
             {{ comment.created }}
         </p>
-        {{ comment.text|linebreaks }}
+        <p class="comment_text">
+            {{ comment.text }}
+        </p>
     </div>
     {% endfor %}
 </div>
@@ -15,10 +18,9 @@
 {% if new_comment %}
     <h3>Комментарий добавлен.</h3>
     {% if user.is_authenticated %}
-        <h3>Прокомментировать</h3>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <p><input type="submit" id="send_comment" value="Отправить"></p>
         </form>
     {% else %}
@@ -27,10 +29,9 @@
     {% endif %}
 {% else %}
     {% if user.is_authenticated %}
-        <h3>Прокомментировать</h3>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <p><input type="submit" id="send_comment" value="Отправить"></p>
         </form>
     {% else %}
