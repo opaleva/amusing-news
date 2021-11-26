@@ -76,11 +76,12 @@ def get_secret(setting):
 SECRET_KEY = get_secret('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    '192.168.0.101'
+    "*"
+    # '127.0.0.1',
+    # '192.168.0.101'
 ]
 
 SITE_ID = 1
@@ -225,10 +226,11 @@ EMAIL_USE_TLS = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-def show_toolbar(request):
-    return True
+if DEBUG:
+    def show_toolbar(request):
+        return True
 
 
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
-}
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": show_toolbar,
+    }

@@ -45,6 +45,7 @@ class CommentsConsumer(AsyncWebsocketConsumer):
             'text': new_comment.text
         }
 
+
         await self.channel_layer.group_send(
             self.article_group_name,
             {
@@ -55,7 +56,10 @@ class CommentsConsumer(AsyncWebsocketConsumer):
 
     async def new_comment(self, event):
         message = event['message']
-
+        if not message:
+            logger.error('Failed to leave a comment')
+        else:
+            logger.debug('Comment added successfully')
         await self.send(
             text_data=json.dumps({
                 'message': message
@@ -71,4 +75,5 @@ class CommentsConsumer(AsyncWebsocketConsumer):
             content_type=ct,
             object_id=int(self.article_id)
         )
+
         return new_comment

@@ -8,7 +8,7 @@ freeze:
 
 run:
 	#python3.9 manage.py runserver ${p}
-	gunicorn news_portal.asgi:application -b 192.168.0.101:8000 -t 1800 -k uvicorn.workers.UvicornWorker
+	gunicorn news_portal.asgi:application -b 192.168.0.101:8000 -w 4 -t 1800 -k uvicorn.workers.UvicornWorker
 
 prod:
 	python3.9 manage.py runserver --insecure
