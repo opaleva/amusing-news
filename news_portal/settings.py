@@ -76,7 +76,7 @@ def get_secret(setting):
 SECRET_KEY = get_secret('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "*"
@@ -146,7 +146,8 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('192.168.0.101', 6379)]
+            # 'hosts': [('192.168.0.101', 6379)],
+            'hosts': [('172.17.0.1', 6379)]
         }
     }
 }
