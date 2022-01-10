@@ -1,4 +1,4 @@
-## An asynchronous news portal with real-time commentary.
+## An asynchronous news portal with real-time commenting system.
 - **Frontend:** HTML, CSS, vanilla JS (for WebSockets);
 - **Backend:** Django framework;
 - **Servers:** 
